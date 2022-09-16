@@ -1,8 +1,14 @@
     async function getPhotographers() {
-        return fetch("/data/photographers.json")
-                .then(res => res.json())
-                .then(data => console.log(data))
-                .catch(err => console.log("an error occurs", err));
+        const dataPhotographers = await fetch("/data/photographers.json")
+
+        if (dataPhotographers) {
+            const data = await dataPhotographers.json()
+            console.log(data)
+            return data;
+        }
+        else {
+            return console.log("an error occured")
+        }
     }
 
 
@@ -19,6 +25,7 @@
     async function init() {
         // Récupère les datas des photographes
         const { photographers } = await getPhotographers();
+        console.log(photographers)
         displayData(photographers);
     };
     
