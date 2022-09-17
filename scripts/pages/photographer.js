@@ -1,4 +1,4 @@
-class Photographer {
+/* class photographerFactory {
     
     constructor(data) {
         this._name = data.name
@@ -37,4 +37,4 @@ class Photographer {
     get portrait() {
         return `/assets/photographers/Photographers_ID_Photos/${this._portrait}`
     }
-}
+} */
