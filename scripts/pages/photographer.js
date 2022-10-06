@@ -1,40 +1,42 @@
-/* class photographerFactory {
-    
-    constructor(data) {
-        this._name = data.name
-        this._id = data.id
-        this._city = data.city
-        this._country = data.country
-        this._tagline = data.tagline
-        this._portrait = data.portrait
-        this._price = data.price
-    }
+async function getPhotographerId() {
+    let params = (new URL(document.location)).searchParams;
+    let id = params.get("id");
+    console.log(id);
 
-    get id() {
-        return this._id
-    }
+    return (id);
+}
 
-    get name() {
-        return this._name
-    }
+async function getPhotographer() {
+    const dataPhotographers = await fetch("/data/photographers.json")
+    const photographerId = await getPhotographerId();
 
-    get city() {
-        return this._city
-    }
+    if (dataPhotographers) {
+        const data = await dataPhotographers.json()
+        console.log(data);
+        
+        // filtre le JSON pour retrouver l'id du photographe affiché dans l'URL
+        const result = await data.photographers.filter(d => d["id"] == photographerId);
+        console.log("result: ", result);
 
-    get country() {
-        return this._country
+        return (result);
     }
+    else {
+        return console.log("an error occured")
+    }
+}
 
-    get tagline() {
-        return this._tagline
-    }
+async function displayData(photographer) {
+    const photographerPresentation = document.querySelector(".photographer-presentation");
 
-    get price() {
-        return this._price
-    }
+    const photographerModel = new photographerFactory(photographer);
+    photographerPresentation.appendChild(photographerModel.photographerPresentation);
 
-    get portrait() {
-        return `/assets/photographers/Photographers_ID_Photos/${this._portrait}`
-    }
-} */
+}
+
+async function init() {
+    const photographer = await getPhotographer();
+    console.log("photographer", photographer);
+    displayData(photographer);
+}
+
+init();
