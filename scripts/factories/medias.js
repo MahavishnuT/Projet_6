@@ -1,5 +1,5 @@
 function mediaFactory(data) {
-    const { id, photographerId, title, image, video, likes, date, price } = data;
+    const { title, image, video, likes } = data;
 
     const picture = `assets/images/Sample_Photos/${image}`;
     const film = `assets/images/Sample_Photos/${video}`;
@@ -12,11 +12,20 @@ function mediaFactory(data) {
 function getMediaCardDOM(title, image, video, likes) {
     const article = document.createElement( 'article' );
 
-    const img = document.createElement( 'img' );
-    img.setAttribute("src", image)
+    function imageOrVideo() {
+        if (image) {
+            const img = document.createElement( 'img' );
+            img.setAttribute("src", image)
+            return (img);
+        }
+        else {
+            const film = document.createElement("video");
+            film.setAttribute("src", video)
+            return (film)
+        }
+    }
 
-    const film = document.createElement("video");
-    film.setAttribute("src", video)
+    const result = imageOrVideo();
 
     const h2 = document.createElement( 'h2' );
     h2.textContent = title;
@@ -24,7 +33,7 @@ function getMediaCardDOM(title, image, video, likes) {
     const likesNumber = document.createElement("span");
     likesNumber.textContent = likes;
 
-    article.append(title, image, video, likes);
+    article.append(result, h2, likesNumber);
 
     return (article);
 }

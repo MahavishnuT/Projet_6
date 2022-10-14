@@ -1,11 +1,11 @@
 function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
-
+    console.log("data",data)
     const picture = `assets/photographers/Photographers_ID_Photos/${portrait}`;
 
     const userCardDOM = getUserCardDOM(name, picture, city, country, tagline, price, id);
 
-    const photographerPresentation = getPhotographerPresentation(name, picture, city, country, tagline)
+    const photographerPresentation = getPhotographerPresentation(name, picture, city, country, tagline);
 
     return { name, picture, userCardDOM, photographerPresentation, id }
 }
@@ -46,12 +46,12 @@ function getUserCardDOM(name, picture, city, country, tagline, price, id) {
 function getPhotographerPresentation(name, picture, city, country, tagline) {
     const article = document.createElement( 'article' );
 
-    const img = document.createElement( 'img' );
-    img.setAttribute("src", picture)
+    const photographHeaderText = document.createElement("div");
+    photographHeaderText.classList.add("photograph-header-text");
 
     const h1 = document.createElement( 'h1' );
     h1.textContent = name;
-
+    
     const place = document.createElement("span");
     place.classList.add("place");
     place.textContent = `${city}, ${country}`;
@@ -60,7 +60,11 @@ function getPhotographerPresentation(name, picture, city, country, tagline) {
     taglineDOM.classList.add("taglineDOM");
     taglineDOM.textContent = tagline;
     
-    article.append(img, h1, place, taglineDOM);
+    const img = document.createElement( 'img' );
+    img.setAttribute("src", picture)
+
+    photographHeaderText.append(h1, place, taglineDOM)
+    article.append(photographHeaderText, img);
 
     return (article);
 }
