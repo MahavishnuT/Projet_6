@@ -1,12 +1,23 @@
 function mediaFactory(data) {
     const { title, image, video, likes } = data;
 
-    const picture = `assets/images/Sample_Photos/${image}`;
-    const film = `assets/images/Sample_Photos/${video}`;
+    function imageOrVideo() {
+        if (image) {
+            const picture = `assets/images/Sample_Photos/${image}`;
+            return (picture);
+        }
+        else {
+            const film = `assets/images/Sample_Photos/${video}`;
+            return (film);
+        }
+    }
+
+    const result = imageOrVideo();
+    console.log("result :", result);
 
     const mediaCardDOM = getMediaCardDOM(title, image, video, likes);
 
-    return { picture, film, mediaCardDOM }
+    return { result, mediaCardDOM }
 }
 
 function getMediaCardDOM(title, image, video, likes) {

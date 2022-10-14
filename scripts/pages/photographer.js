@@ -44,11 +44,11 @@ async function getMedias() {
     if (dataMedias) {
         const data = await dataMedias.json()
         
-        // filtre le JSON pour retrouver l'id du photographe affiché dans l'URL
+        // filtre le JSON pour retrouver l'id du photographe dans le media et compare avec celui affiché dans l'URL
         const result = await data.media.filter(d => d["photographerId"] == photographerId);
         console.log("result: ", result);
 
-        //retourne le/la photographe
+        // retourne les médias associés
         return (result);
     }
     else {
