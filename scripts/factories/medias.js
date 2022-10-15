@@ -4,18 +4,18 @@ function mediaFactory(data) {
     function imageOrVideo() {
         if (image) {
             const picture = `assets/images/Sample_Photos/${image}`;
-            return (picture);
+            return {picture : picture};
         }
         else {
             const film = `assets/images/Sample_Photos/${video}`;
-            return (film);
+            return {film : film};
         }
     }
 
     const result = imageOrVideo();
     console.log("result :", result);
 
-    const mediaCardDOM = getMediaCardDOM(title, image, video, likes);
+    const mediaCardDOM = getMediaCardDOM(title, result.picture, result.video, likes);
 
     return { result, mediaCardDOM }
 }
@@ -32,7 +32,7 @@ function getMediaCardDOM(title, image, video, likes) {
         else {
             const film = document.createElement("video");
             film.setAttribute("src", video)
-            return (film)
+            return (film);
         }
     }
 
@@ -44,7 +44,11 @@ function getMediaCardDOM(title, image, video, likes) {
     const likesNumber = document.createElement("span");
     likesNumber.textContent = likes;
 
-    article.append(result, h2, likesNumber);
+    const heartShape = document.createElement("i");
+    heartShape.classList.add("fa-solid");
+    heartShape.classList.add("fa-heart");
+
+    article.append(result, h2, likesNumber, heartShape);
 
     return (article);
 }
