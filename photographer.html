@@ -24,11 +24,24 @@
 			<div class="modal">
 				<header class="photographer-presentation">
           <h2>Contactez-moi</h2>
+          <span class="error-msg">Les informations ne sont pas correctes</span>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
-					<div>
+					<div class="form-element">
 						<label>Prénom</label>
+						<input type="text" id="first" name="first"/>
+					</div>
+					<div class="form-element">
+						<label>Nom</label>
+						<input type="text" id="last" name="last"/>
+					</div>
+					<div class="form-element">
+						<label>Email</label>
+						<input type="text" id="email" name="email"/>
+					</div>
+					<div class="form-element">
+						<label>Votre message</label>
 						<input />
 					</div>
           <button class="contact_button">Envoyer</button>
