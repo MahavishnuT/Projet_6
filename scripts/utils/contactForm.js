@@ -5,7 +5,6 @@ const form = document.querySelector("form");
 const submitBtn = document.querySelector("form .contact_button");
 const errorMsg = document.querySelector(".error-msg");
 const modalTitle = document.querySelector(".photographer-presentation h2");
-console.log("modalTitle", modalTitle.value);
 const formElement = document.querySelectorAll(".form-element");
 
 // regex
@@ -91,9 +90,6 @@ function handleForm(e) {
             form.style.display = "none";
         })
         modalTitle.textContent = "Message envoyé!";
-        submitBtn.textContent = "Fermer";
-        submitBtn.addEventListener("click", function() {
-            closeModal();
-        })
+        submitBtn.style.display = "none";
     }
   }

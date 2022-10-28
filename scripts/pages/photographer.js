@@ -1,7 +1,6 @@
 async function getPhotographerId() {
     let params = (new URL(document.location)).searchParams;
     let id = params.get("id");
-    console.log(id);
 
     return (id);
 }
@@ -12,11 +11,9 @@ async function getPhotographer() {
 
     if (dataPhotographers) {
         const data = await dataPhotographers.json()
-        console.log(data);
         
         // filtre le JSON pour retrouver l'id du photographe affiché dans l'URL
         const result = await data.photographers.filter(d => d["id"] == photographerId);
-        console.log("result: ", result);
 
         //retourne le/la photographe
         return (result[0]);
@@ -31,7 +28,6 @@ async function displayData(photographer) {
     const photographerPresentation = document.querySelector(".photograph-header");
 
     const photographerModel = new photographerFactory(photographer);
-    console.log("photographerModel", photographerModel);
     photographerPresentation.appendChild(photographerModel.photographerPresentation);
 }
 
@@ -46,7 +42,6 @@ async function getMedias() {
         
         // filtre le JSON pour retrouver l'id du photographe dans le media et compare avec celui affiché dans l'URL
         const result = await data.media.filter(d => d["photographerId"] == photographerId);
-        console.log("result: ", result);
 
         // retourne les médias associés
         return (result);
@@ -62,7 +57,6 @@ async function displayDataMedias(medias) {
 
     medias.forEach((media) => {
         const mediaModel = new mediaFactory(media);
-        console.log("mediaModel: ", mediaModel);
         mediasContainer.appendChild(mediaModel.mediaCardDOM);
     });
 };
