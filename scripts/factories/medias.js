@@ -21,34 +21,31 @@ function mediaFactory(data) {
     return { result, mediaCardDOM }
 }
 
+function createMediaInDOM(type, media) {
+    const lightboxContainer = document.querySelector(".lightbox-container");
+
+    const newMedia = document.createElement( type );
+    newMedia.setAttribute("src", media)
+    newMedia.setAttribute("onclick", "openLightbox()")
+    newMedia.addEventListener("click", function() {
+        newMedia.classList.add("active");
+        lightboxContainer.appendChild(newMedia);
+    })
+    if (type === "video") {
+        newMedia.setAttribute("autoplay", "");
+        newMedia.setAttribute("controls", "");
+    }
+    newMedia.classList.add("media")
+    return (newMedia);
+}
+
 function getMediaCardDOM(title, image, video, likes) {
     const article = document.createElement( 'article' );
 
     function imageOrVideo() {
-        const lightboxContainer = document.querySelector(".lightbox-container");
 
-        if (image) {
-            const img = document.createElement( 'img' );
-            img.setAttribute("src", image)
-            img.setAttribute("onclick", "openLightbox()")
-            img.addEventListener("click", function() {
-                img.classList.add("active");
-                lightboxContainer.appendChild(img)
-            })
-            img.classList.add("media")
-            return (img);
-        }
-        else {
-            const film = document.createElement("video");
-            film.setAttribute("src", video)
-            film.setAttribute("onclick", "openLightbox()")
-            film.addEventListener("click", function() {
-                film.classList.add("active");
-                lightboxContainer.appendChild(film)
-            })
-            film.classList.add("media")
-            return (film);
-        }
+        return image ? createMediaInDOM("img", image) : createMediaInDOM("video", video) 
+
     }
 
     const result = imageOrVideo();

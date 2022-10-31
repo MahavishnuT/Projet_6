@@ -1,3 +1,9 @@
+*, ::before, ::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
 #contact_modal {
     display: none;
 }
@@ -73,7 +79,7 @@
 .medias-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    gap: 40px;
     margin-top: 100px;
 }
 
@@ -81,6 +87,8 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    margin: 0 10px;
+    max-width: 350px;
 }
 
 .medias-container article img {
@@ -101,6 +109,9 @@
     bottom: -35px;
     left: 0%;
     color: #911C1C;
+    font-size: 20px;
+    max-width: 200px;
+    max-height: 30px;
 }
 
 .medias-container article span {
@@ -201,9 +212,21 @@ form input {
     cursor: pointer;
 }
 
+.background-lightbox {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(82, 82, 82, 50%);
+}
+
 .lightbox-container {
     display: none;
     width: 70%;
+    height: 90%;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -211,7 +234,54 @@ form input {
 }
 
 .lightbox-container .active {
-    width: auto;
-    height: auto;
-    object-fit: cover;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    animation: fade 0.8s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    transform-origin: center;
+    cursor: pointer;
+    top: 0;
+    right: -50px;
+}
+
+.fa-xmark-large {
+    color: #901C1C;
+    font-size: 40px;
+    width: 20px;
+    height: 20px;
+}
+
+.btn-nav {
+    position: absolute;
+    top: 50%;
+    transform-origin: center;
+    cursor: pointer;
+    display: block;
+}
+
+.btn-nav.left {
+    left: -50px;
+}
+
+.btn-nav.right {
+    right: -50px;
+}
+
+.fa-chevron-left, .fa-chevron-right {
+    display: inline-block;
+    color: #901C1C;
+    font-size: 40px;
 }
