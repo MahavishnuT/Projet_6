@@ -1,18 +1,19 @@
 const lightboxContainer = document.querySelector(".lightbox-container");
 const backgroundLightbox = document.querySelector(".background-lightbox");
-const mediasDOM = document.querySelectorAll(".media");
-const nbSlides = mediasDOM.length;
-console.log("nbSlides: ", nbSlides);
 const suivant = document.querySelector(".left");
 const precedent = document.querySelector(".right");
 let count = 0;
 
 async function slideSuivante() {
-    const displayMedias = await displayDataMedias();
+    await displayDataMedias();
 
+    const mediasDOM = document.querySelectorAll(".media");
+    const nbSlides = mediasDOM.length;
+    console.log("nbSlides: ", nbSlides);
+    
     mediasDOM[count].classList.remove("active");
 
-    if (count < nbSlide - 1) {
+    if (count < nbSlides - 1) {
         count++;
     }
     else {
@@ -24,8 +25,15 @@ async function slideSuivante() {
 }
 suivant.addEventListener("click", slideSuivante);
 
-
 function openLightbox() {
     backgroundLightbox.style.display = "block";
     lightboxContainer.style.display = "block";
+}
+
+function closeLightbox() {
+    const mediaInLightBox = document.querySelector(".lightbox-container .media");
+
+    backgroundLightbox.style.display = "none";
+    lightboxContainer.removeChild(mediaInLightBox)
+                     .style.display = "none";   
 }

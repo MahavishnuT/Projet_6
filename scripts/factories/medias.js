@@ -27,9 +27,10 @@ function createMediaInDOM(type, media) {
     const newMedia = document.createElement( type );
     newMedia.setAttribute("src", media)
     newMedia.setAttribute("onclick", "openLightbox()")
-    newMedia.addEventListener("click", function() {
+    newMedia.addEventListener("click", e => {
         newMedia.classList.add("active");
-        lightboxContainer.appendChild(newMedia);
+        lightboxContainer.appendChild(newMedia.cloneNode(true));
+        console.log(e.target);
     })
     if (type === "video") {
         newMedia.setAttribute("autoplay", "");
