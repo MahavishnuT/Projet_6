@@ -1,29 +1,46 @@
 const lightboxContainer = document.querySelector(".lightbox-container");
 const backgroundLightbox = document.querySelector(".background-lightbox");
-const suivant = document.querySelector(".left");
-const precedent = document.querySelector(".right");
-let count = 0;
+const suivant = document.querySelector(".right");
+const precedent = document.querySelector(".left");
 
-async function slideSuivante() {
-    await displayDataMedias();
-
-    const mediasDOM = document.querySelectorAll(".media");
+function slideSuivante(e) {
+    
+    const mediasDOM = document.querySelectorAll(".medias-container .media");
+    console.log("mediasDOM: ", mediasDOM);
+    const mediasDOMArray = Array.prototype.slice.call(mediasDOM);
+    console.log("mediasDOMArray: ", mediasDOMArray);
+    const currentMedia = document.querySelector(".active");
+    console.log("currentMedia: ", currentMedia)
     const nbSlides = mediasDOM.length;
     console.log("nbSlides: ", nbSlides);
+    let indexOfMedia = mediasDOMArray.indexOf(currentMedia);
+    console.log("indexOfMedia: ", indexOfMedia);
     
-    mediasDOM[count].classList.remove("active");
+    mediasDOMArray[indexOfMedia].classList.remove("active");
 
-    if (count < nbSlides - 1) {
-        count++;
+    if (indexOfMedia < nbSlides - 1) {
+        indexOfMedia++;
     }
     else {
-        count = 0;
+        indexOfMedia = 0;
     }
 
-    mediasDOM[count].classList.add("active");
-    console.log(count);
+    mediasDOMArray[indexOfMedia].classList.add("active");
 }
-suivant.addEventListener("click", slideSuivante);
+suivant.addEventListener("click", (e) => {
+    slideSuivante(e);
+});
+
+// function displayMediaInLightbox() {
+//     mediasDOM.forEach(media => {
+//         media.addEventListener("click", e => {
+//             newMedia.classList.add("active");
+//             const currentMedia = document.querySelector(".active");
+//             lightboxContainer.appendChild(currentMedia.cloneNode(true));
+//             console.log("e.target", e.target);
+//         })
+//     })
+// }
 
 function openLightbox() {
     backgroundLightbox.style.display = "block";
