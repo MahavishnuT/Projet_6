@@ -39,6 +39,7 @@ function slideSuivante(e) {
     console.log("indexOfMedia: ", indexOfMedia);
     
     mediasDOMArray[indexOfMedia].classList.remove("active");
+    lightboxContainer.removeChild(document.querySelector(".lightbox-container img"));
 
     if (indexOfMedia < nbSlides - 1) {
         indexOfMedia++;
@@ -48,6 +49,8 @@ function slideSuivante(e) {
     }
 
     mediasDOMArray[indexOfMedia].classList.add("active");
+    lightboxContainer.appendChild(mediasDOMArray[indexOfMedia])
+    console.log(mediasDOMArray[indexOfMedia])
 }
 suivant.addEventListener("click", (e) => {
     slideSuivante(e);
