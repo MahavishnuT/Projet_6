@@ -21,6 +21,8 @@ function mediaFactory(data) {
     return { result, mediaCardDOM }
 }
 
+
+
 function createMediaInDOM(type, media) {
     const lightboxContainer = document.querySelector(".lightbox-container");
 

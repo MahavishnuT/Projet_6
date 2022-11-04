@@ -199,6 +199,7 @@ form input {
     border-radius: 5px;
 }
 
+
 .modal .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -255,33 +256,27 @@ form input {
     cursor: pointer;
     top: 0;
     right: -50px;
-}
-
-.fa-xmark-large {
-    color: #901C1C;
-    font-size: 40px;
-    width: 20px;
-    height: 20px;
+    background: url(../assets/svg/xmark.svg) center center / 100% 100%; 
+    width: 26px;
+    height: 26px;
 }
 
 .btn-nav {
+    background: url(../assets/svg/chevron.svg) center center / 100% 100%;
     position: absolute;
     top: 50%;
     transform-origin: center;
     cursor: pointer;
     display: block;
+    width: 20px;
+    height: 36px;
 }
 
 .btn-nav.left {
     left: -50px;
+    transform: rotate(180deg);
 }
 
 .btn-nav.right {
     right: -50px;
-}
-
-.fa-chevron-left, .fa-chevron-right {
-    display: inline-block;
-    color: #901C1C;
-    font-size: 40px;
 }
