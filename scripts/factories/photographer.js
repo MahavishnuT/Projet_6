@@ -1,7 +1,7 @@
 function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
     console.log("data",data)
-    const picture = `./assets/photographers/Photographers_ID_Photos/${portrait}`;
+    const picture = `../../assets/photographers/Photographers_ID_Photos/${portrait}`;
 
     const userCardDOM = getUserCardDOM(name, picture, city, country, tagline, price, id);
 
@@ -16,7 +16,7 @@ function getUserCardDOM(name, picture, city, country, tagline, price, id) {
     const article = document.createElement( 'article' );
 
     const link = document.createElement("a");
-    link.setAttribute("href", `../photographer.html?id=${id}`)
+    link.setAttribute("href", `../../photographer.html?id=${id}`)
     link.setAttribute("aria-label", `${name}`)
 
     const img = document.createElement( 'img' );
