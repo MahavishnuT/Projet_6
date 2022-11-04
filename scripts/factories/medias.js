@@ -3,11 +3,11 @@ function mediaFactory(data) {
 
     function imageOrVideo() {
         if (image) {
-            const picture = `../../assets/images/Sample_Photos/${image}`;
+            const picture = `./assets/images/Sample_Photos/${image}`;
             return {picture : picture};
         }
         else {
-            const film = `../../assets/images/Sample_Photos/${video}`;
+            const film = `./assets/images/Sample_Photos/${video}`;
             return {film : film};
         }
     }

@@ -6,7 +6,7 @@ async function getPhotographerId() {
 }
 
 async function getPhotographer() {
-    const dataPhotographers = await fetch("../../data/photographers.json")
+    const dataPhotographers = await fetch("./data/photographers.json")
     const photographerId = await getPhotographerId();
 
     if (dataPhotographers) {
@@ -34,7 +34,7 @@ async function displayData(photographer) {
 
 
 async function getMedias() {
-    const dataMedias = await fetch("../../data/photographers.json")
+    const dataMedias = await fetch("./data/photographers.json")
     const photographerId = await getPhotographerId();
 
     if (dataMedias) {
