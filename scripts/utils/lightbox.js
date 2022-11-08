@@ -3,24 +3,6 @@ const backgroundLightbox = document.querySelector(".background-lightbox");
 const suivant = document.querySelector(".right");
 const precedent = document.querySelector(".left");
 
-// async function displayMediaInLightbox() {
-//     await displayDataMedias();
-//     const mediasDOM = document.querySelectorAll(".medias-container .media");
-//     mediasDOM.forEach(media => {
-
-//         media.addEventListener("click", e => {
-//             media.classList.add("active");
-//             const currentMedia = document.querySelector(".active");
-//             lightboxContainer.appendChild(currentMedia.cloneNode(true));
-//             console.log("e.target", e.target);
-//         })
-
-//     })
-
-// }
-
-// displayMediaInLightbox();
-
 /**
  * 
  * @param {*} e 
@@ -28,18 +10,13 @@ const precedent = document.querySelector(".left");
 function slideSuivante(e) {
     
     const mediasDOM = document.querySelectorAll(".medias-container .media");
-    console.log("mediasDOM: ", mediasDOM);
     const mediasDOMArray = Array.prototype.slice.call(mediasDOM);
-    console.log("mediasDOMArray: ", mediasDOMArray);
     const currentMedia = document.querySelector(".active");
-    console.log("currentMedia: ", currentMedia)
     const nbSlides = mediasDOM.length;
-    console.log("nbSlides: ", nbSlides);
     let indexOfMedia = mediasDOMArray.indexOf(currentMedia);
-    console.log("indexOfMedia: ", indexOfMedia);
     
     mediasDOMArray[indexOfMedia].classList.remove("active");
-    lightboxContainer.removeChild(document.querySelector(".lightbox-container img"));
+    lightboxContainer.removeChild(document.querySelector(".lightbox-container .media"));
 
     if (indexOfMedia < nbSlides - 1) {
         indexOfMedia++;
@@ -49,8 +26,7 @@ function slideSuivante(e) {
     }
 
     mediasDOMArray[indexOfMedia].classList.add("active");
-    lightboxContainer.appendChild(mediasDOMArray[indexOfMedia])
-    console.log(mediasDOMArray[indexOfMedia])
+    lightboxContainer.appendChild(mediasDOMArray[indexOfMedia].cloneNode(true))
 }
 suivant.addEventListener("click", (e) => {
     slideSuivante(e);
@@ -59,17 +35,13 @@ suivant.addEventListener("click", (e) => {
 function slidePrecedente(e) {
     
     const mediasDOM = document.querySelectorAll(".medias-container .media");
-    console.log("mediasDOM: ", mediasDOM);
     const mediasDOMArray = Array.prototype.slice.call(mediasDOM);
-    console.log("mediasDOMArray: ", mediasDOMArray);
     const currentMedia = document.querySelector(".active");
-    console.log("currentMedia: ", currentMedia)
     const nbSlides = mediasDOM.length;
-    console.log("nbSlides: ", nbSlides);
     let indexOfMedia = mediasDOMArray.indexOf(currentMedia);
-    console.log("indexOfMedia: ", indexOfMedia);
     
     mediasDOMArray[indexOfMedia].classList.remove("active");
+    lightboxContainer.removeChild(document.querySelector(".lightbox-container .media"));
 
     if (indexOfMedia > 0) {
         indexOfMedia--;
@@ -79,10 +51,22 @@ function slidePrecedente(e) {
     }
 
     mediasDOMArray[indexOfMedia].classList.add("active");
+    lightboxContainer.appendChild(mediasDOMArray[indexOfMedia].cloneNode(true))
 }
 precedent.addEventListener("click", (e) => {
     slidePrecedente(e);
 });
+
+function keyPress(e) {
+    e.preventDefault();
+    if(e.keyCode === 37) {
+        slidePrecedente();
+    }
+    else if(e.keyCode === 39) {
+        slideSuivante();
+    }
+}
+document.addEventListener("keydown", keyPress)
 
 function openLightbox() {
     backgroundLightbox.style.display = "block";
