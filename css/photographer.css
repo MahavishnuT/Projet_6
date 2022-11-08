@@ -123,11 +123,18 @@
     color: #901C1C;
 }
 
-.medias-container article i {
-    color: #901C1C;
+.medias-container article button {
     position: absolute;
     bottom: -30px;
     right: 0%;
+    cursor: pointer;
+    background-color: white;
+    border: none; 
+}
+
+.medias-container article i {
+    color: #901C1C;
+    pointer-events: none;
 }
 
 .modal {
@@ -238,7 +245,7 @@ form input {
     object-fit: contain;
     height: 100%;
     width: 100%;
-    animation: fade 0.8s;
+    animation: fade 0.3s;
 }
 
 @keyframes fade {

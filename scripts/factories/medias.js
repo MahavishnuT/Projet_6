@@ -29,11 +29,10 @@ function createMediaInDOM(type, media) {
     const newMedia = document.createElement( type );
     newMedia.setAttribute("src", media)
     newMedia.setAttribute("onclick", "openLightbox()")
-    newMedia.addEventListener("click", e => {
+    newMedia.addEventListener("click", () => {
         newMedia.classList.add("active");
         const currentMedia = document.querySelector(".active");
         lightboxContainer.appendChild(currentMedia.cloneNode(true));
-        console.log("e.target", e.target);
     })
     if (type === "video") {
         newMedia.setAttribute("autoplay", "");
@@ -58,13 +57,25 @@ function getMediaCardDOM(title, image, video, likes) {
     h2.textContent = title;
 
     const likesNumber = document.createElement("span");
-    likesNumber.textContent = likes;
+    likesNumber.innerText = parseInt(likes, 10);
 
+    const heartShapeButton = document.createElement("button");
+    // heartShapeButton.setAttribute("onclick", "incrementLike()");
+    heartShapeButton.addEventListener("click", e => {
+        const likeClicked = e.target;
+        let likesNumberDOM = likeClicked.previousElementSibling;
+        let likesNumber = likesNumberDOM.innerText;
+        
+        likesNumber++;
+        likesNumberDOM.innerText = likesNumber;
+        
+        likeClicked.disabled = true;
+    })
     const heartShape = document.createElement("i");
-    heartShape.classList.add("fa-solid");
-    heartShape.classList.add("fa-heart");
+    heartShape.classList.add("fa-solid", "fa-heart");
+    heartShapeButton.append(heartShape);
 
-    article.append(result, h2, likesNumber, heartShape);
+    article.append(result, h2, likesNumber, heartShapeButton);
 
     return (article);
 }

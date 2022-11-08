@@ -59,11 +59,21 @@ precedent.addEventListener("click", (e) => {
 
 function keyPress(e) {
     e.preventDefault();
-    if(e.keyCode === 37) {
-        slidePrecedente();
+
+    if(lightboxContainer.style.display = "block") {
+
+        if(e.keyCode === 37) {
+            slidePrecedente();
+        }
+        else if(e.keyCode === 39) {
+            slideSuivante();
+        }
+        else if(e.keyCode === 27) {
+            closeLightbox();
+        }
     }
-    else if(e.keyCode === 39) {
-        slideSuivante();
+    else {
+        return;
     }
 }
 document.addEventListener("keydown", keyPress)
