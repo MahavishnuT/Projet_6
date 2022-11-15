@@ -7,7 +7,9 @@ function photographerFactory(data) {
 
     const photographerPresentation = getPhotographerPresentation(name, picture, city, country, tagline);
 
-    return { name, picture, userCardDOM, photographerPresentation, id }
+    const priceForEncart = getPriceForEncartDOM(price);
+
+    return { name, picture, userCardDOM, photographerPresentation, id, priceForEncart }
 }
 
 // Séparation des fonctions, éviter de mettre une fonction dans une fonction
@@ -67,4 +69,12 @@ function getPhotographerPresentation(name, picture, city, country, tagline) {
     article.append(photographHeaderText, img);
 
     return (article);
+}
+
+function getPriceForEncartDOM(price) {
+    const pricePerDay = document.createElement("span");
+    pricePerDay.classList.add("price-per-day");
+    pricePerDay.innerText = `${price}€ / jour`;
+    
+    return(pricePerDay);
 }

@@ -26,9 +26,11 @@ async function getPhotographer() {
 
 async function displayData(photographer) {
     const photographerPresentation = document.querySelector(".photograph-header");
+    const encartContainer = document.querySelector(".encart-container");
 
     const photographerModel = new photographerFactory(photographer);
     photographerPresentation.appendChild(photographerModel.photographerPresentation);
+    encartContainer.appendChild(photographerModel.priceForEncart);
 }
 
 
@@ -61,12 +63,20 @@ async function displayDataMedias(medias) {
     });
 };
 
+async function displayDataEncart(encartDOM) {
+    const encartContainer = document.querySelector(".encart-container");
+
+    const encartModel = new mediaFactory(encartDOM);
+    encartContainer.appendChild(encartModel.likesForEncart);
+}
+
 async function init() {
     const photographer = await getPhotographer();
     const medias = await getMedias();
 
     displayData(photographer);
     displayDataMedias(medias);
+    displayDataEncart(medias);
 }
 
 init();

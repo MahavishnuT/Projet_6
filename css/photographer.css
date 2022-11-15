@@ -287,3 +287,33 @@ form input {
 .btn-nav.right {
     right: -50px;
 }
+
+.encart-container {
+    display: flex;
+    position: fixed;
+    transform-origin: bottom right;
+    bottom: 0;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #DB8876;
+    border-radius: 5px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
+.encart-container .fa-heart {
+    position: absolute;
+    order: 2;
+    right: 135px;
+}
+
+.encart-container .sum-likes {
+    order: 3;
+    font-weight: 500;
+}
+
+.encart-container .price-per-day {
+    font-weight: 500;
+}

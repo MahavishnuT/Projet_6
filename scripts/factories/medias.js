@@ -1,5 +1,5 @@
 function mediaFactory(data) {
-    const { title, image, video, likes } = data;
+    const { title, image, video, likes, price } = data;
 
     function imageOrVideo() {
         if (image) {
@@ -17,8 +17,9 @@ function mediaFactory(data) {
 
     const mediaCardDOM = getMediaCardDOM(title, result.picture, result.film, likes);
 
+    const likesForEncart = getLikesForEncartDOM();
 
-    return { result, mediaCardDOM }
+    return { result, mediaCardDOM, likesForEncart }
 }
 
 
@@ -57,17 +58,17 @@ function getMediaCardDOM(title, image, video, likes) {
     h2.textContent = title;
 
     const likesNumber = document.createElement("span");
+    likesNumber.classList.add("likes");
     likesNumber.innerText = parseInt(likes, 10);
 
     const heartShapeButton = document.createElement("button");
-    // heartShapeButton.setAttribute("onclick", "incrementLike()");
     heartShapeButton.addEventListener("click", e => {
         const likeClicked = e.target;
         let likesNumberDOM = likeClicked.previousElementSibling;
-        let likesNumber = likesNumberDOM.innerText;
+        const sumLikesDOM = document.querySelector(".sum-likes");
         
-        likesNumber++;
-        likesNumberDOM.innerText = likesNumber;
+        likesNumberDOM.innerText++
+        sumLikesDOM.innerText++;
         
         likeClicked.disabled = true;
     })
@@ -78,4 +79,17 @@ function getMediaCardDOM(title, image, video, likes) {
     article.append(result, h2, likesNumber, heartShapeButton);
 
     return (article);
+}
+
+function getLikesForEncartDOM() {
+
+    const allLikes = document.querySelectorAll(".likes");
+    const allLikesArray = Array.from(allLikes).map(x => parseInt(x.innerText, 10));
+    console.log("allLikesArray :", allLikesArray);
+
+    const sumLikesDOM = document.createElement("span");
+    sumLikesDOM.innerText = allLikesArray.reduce((a, b) => a + b, 0);
+    sumLikesDOM.classList.add("sum-likes");
+
+    return (sumLikesDOM);
 }
