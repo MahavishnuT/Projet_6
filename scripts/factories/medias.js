@@ -85,7 +85,6 @@ function getLikesForEncartDOM() {
 
     const allLikes = document.querySelectorAll(".likes");
     const allLikesArray = Array.from(allLikes).map(x => parseInt(x.innerText, 10));
-    console.log("allLikesArray :", allLikesArray);
 
     const sumLikesDOM = document.createElement("span");
     sumLikesDOM.innerText = allLikesArray.reduce((a, b) => a + b, 0);

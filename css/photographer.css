@@ -369,11 +369,15 @@ form input {
 .menu li {
     padding: 0.7em 0.5em;
     margin: 0.3em 0;
-    border-radius: 5px;
+    border-bottom: 1px solid white;
     cursor: pointer;
 }
 
-.active {
+.menu li:nth-child(3) {
+    border-bottom: none;
+}
+
+.active-menu {
     background: #DB8876;
 }
 
