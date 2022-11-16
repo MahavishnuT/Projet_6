@@ -1,5 +1,5 @@
 function mediaFactory(data) {
-    const { title, image, video, likes, price } = data;
+    const { title, image, video, likes } = data;
 
     function imageOrVideo() {
         if (image) {

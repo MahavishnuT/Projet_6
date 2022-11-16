@@ -2,7 +2,7 @@
         const dataPhotographers = await fetch("./data/photographers.json")
 
         if (dataPhotographers) {
-            const data = await dataPhotographers.json()
+            const data = await dataPhotographers.json();
             console.log(data)
             return data;
         }
