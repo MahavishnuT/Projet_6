@@ -1,5 +1,5 @@
 function mediaFactory(data) {
-    const { title, image, video, likes } = data;
+    const { title, image, video, likes, date } = data;
 
     function imageOrVideo() {
         if (image) {
@@ -15,7 +15,7 @@ function mediaFactory(data) {
     const result = imageOrVideo();
     console.log("result :", result);
 
-    const mediaCardDOM = getMediaCardDOM(title, result.picture, result.film, likes);
+    const mediaCardDOM = getMediaCardDOM(title, result.picture, result.film, likes, date);
 
     const likesForEncart = getLikesForEncartDOM();
 
@@ -43,24 +43,23 @@ function createMediaInDOM(type, media) {
     return (newMedia);
 }
 
-function getMediaCardDOM(title, image, video, likes) {
-    const article = document.createElement( 'article' );
-
+function getMediaCardDOM(title, image, video, likes, date) {
+    
     function imageOrVideo() {
-
+        
         return image ? createMediaInDOM("img", image) : createMediaInDOM("video", video) 
-
+        
     }
-
+    
     const result = imageOrVideo();
-
+    
     const h2 = document.createElement( 'h2' );
     h2.textContent = title;
-
+    
     const likesNumber = document.createElement("span");
     likesNumber.classList.add("likes");
     likesNumber.innerText = parseInt(likes, 10);
-
+    
     const heartShapeButton = document.createElement("button");
     heartShapeButton.addEventListener("click", e => {
         const likeClicked = e.target;
@@ -75,9 +74,11 @@ function getMediaCardDOM(title, image, video, likes) {
     const heartShape = document.createElement("i");
     heartShape.classList.add("fa-solid", "fa-heart");
     heartShapeButton.append(heartShape);
-
+    
+    const article = document.createElement( 'article' );
+    article.setAttribute("date", (new Date(date)).getTime());
     article.append(result, h2, likesNumber, heartShapeButton);
-
+    
     return (article);
 }
 
