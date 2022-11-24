@@ -7,7 +7,7 @@ const precedent = document.querySelector(".left");
  * 
  * @param {*} e 
  */
-function slideSuivante(e) {
+function slideSuivante() {
     
     const mediasDOM = document.querySelectorAll(".medias-container .media");
     const mediasDOMArray = Array.prototype.slice.call(mediasDOM);
@@ -32,7 +32,7 @@ suivant.addEventListener("click", (e) => {
     slideSuivante(e);
 });
 
-function slidePrecedente(e) {
+function slidePrecedente() {
     
     const mediasDOM = document.querySelectorAll(".medias-container .media");
     const mediasDOMArray = Array.prototype.slice.call(mediasDOM);
@@ -58,9 +58,9 @@ precedent.addEventListener("click", (e) => {
 });
 
 function keyPress(e) {
-    e.preventDefault();
-
-    if(lightboxContainer.style.display = "block") {
+    if(e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 27) {
+        e.stopPropagation();
+        e.preventDefault();
 
         if(e.keyCode === 37) {
             slidePrecedente();
@@ -72,11 +72,12 @@ function keyPress(e) {
             closeLightbox();
         }
     }
+
     else {
         return;
     }
 }
-document.addEventListener("keydown", keyPress)
+document.addEventListener("keydown", keyPress);
 
 function openLightbox() {
     backgroundLightbox.style.display = "block";
