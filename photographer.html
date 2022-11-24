@@ -9,76 +9,79 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <a href="./index.html" class="fisheye-logo"><img src="assets/images/logo.png" class="logo" />
+
+    <header role="banner" tabindex="0" aria-label="En-tête de la page">
+      <a href="./index.html" class="fisheye-logo" title="Lien vers la page d'accueil"><img src="assets/images/logo.png" class="logo" alt="Logo de la bannière pour le site Fisheye"/>
       </a>
     </header>
-    <main id="main">
+    
+    <main id="main" role="main" aria-label="Contenu principal de la page du photographe" tabindex="0">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" aria-label="Bouton pour ouvrir la boite de dialogue">Contactez-moi</button>
       </div>
 
       <div class="dropdown">
-        <div class="select">
+        <div class="select" aria-expanded="false" aria-level="Bouton pour ouvrir le menu déroulant" role="button">
           <span class="selected">Popularité</span>
           <div class="caret"></div>
         </div>
         <ul class="menu">
-          <li class="active-menu">Popularité</li>
-          <li>Date</li>
-          <li>Titre</li>
+          <li class="active-menu" tabindex="0">Popularité</li>
+          <li tabindex="0">Date</li>
+          <li tabindex="0">Titre</li>
         </ul>
       </div>
 
       <div class="medias-container">
         
       </div>
+
     </main>
 
-    <div id="contact_modal">
-			<div class="modal">
-				<header class="photographer-presentation">
-          <h2>Contactez-moi</h2>
-          <span class="error-msg">Les informations ne sont pas correctes</span>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div class="form-element">
-						<label>Prénom</label>
-						<input type="text" id="first" name="first"/>
-					</div>
-					<div class="form-element">
-						<label>Nom</label>
-						<input type="text" id="last" name="last"/>
-					</div>
-					<div class="form-element">
-						<label>Email</label>
-						<input type="text" id="email" name="email"/>
-					</div>
-					<div class="form-element">
-						<label>Votre message</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+      <div id="contact_modal">
+        <div class="modal">
+          <header class="photographer-presentation" tabindex="0">
+            <h2 tabindex="0">Contactez-moi</h2>
+            <span class="error-msg">Les informations ne sont pas correctes</span>
+            <img src="assets/icons/close.svg" onclick="closeModal()" tabindex="0" aria-label="Bouton pour fermer la boîte de dialogue"/>
+          </header>
+          <form action="photographer.html" role="form">
+            <div class="form-element" role="group">
+              <label for="first">Prénom</label>
+              <input type="text" id="first" name="first" aria-invalid="false" aria-errormessage="first name error"/>
+            </div>
+            <div class="form-element" role="group">
+              <label for="last">Nom</label>
+              <input type="text" id="last" name="last" aria-invalid="false" aria-errormessage="last name error"/>
+            </div>
+            <div class="form-element" role="group">
+              <label for="email">Email</label>
+              <input type="text" id="email" name="email" aria-invalid="false" aria-errormessage="email error"/>
+            </div>
+            <div class="form-element" role="group">
+              <label for="message">Votre message</label>
+              <input id="message" name="message" aria-invalid="false" aria-errormessage="message error"/>
+            </div>
+            <button class="contact_button" aria-label="Bouton pour envoyer le message">Envoyer</button>
+          </form>
+        </div>
+      </div>
 
-    <div class="background-lightbox">
+    <div class="background-lightbox" aria-hidden="true">
 
-      <div class="lightbox-container">
+      <div class="lightbox-container" aria-label="Vue rapprochée de l'image">
   
-        <div class="close-btn" onclick="closeLightbox()"></div>
+        <div class="close-btn" onclick="closeLightbox()" aria-label="Bouton pour fermer le carrousel"></div>
   
         <div class="navigation-buttons">
-          <div class="btn-nav left"></div>
-          <div class="btn-nav right"></div>
+          <div class="btn-nav left" aria-label="Bouton pour passer à l'image précédente"></div>
+          <div class="btn-nav right" aria-label="Bouton pour passer à l'image suivante"></div>
         </div>
   
       </div>
     </div>
 
-    <div class="encart-container">
+    <div class="encart-container" tabindex="0">
       <i class="fa-solid fa-heart"></i>
     </div>
 

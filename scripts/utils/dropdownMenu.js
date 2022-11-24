@@ -9,6 +9,7 @@ const activeMenu = document.querySelector(".active-menu")
 
 select.addEventListener("click", () => {
     select.classList.toggle("select-clicked");
+    select.setAttribute("aria-expanded", "true");
     caret.classList.toggle("caret-rotate");
     menu.classList.toggle("menu-open");
 })

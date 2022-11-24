@@ -8,13 +8,13 @@
     <title>Fisheye</title>
   </head>
   <body>
-    <header role="banner">
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+    <header role="banner" tabindex="0" aria-label="En-tête de la page">
+      <a href="index.html" title="Lien vers la page d'accueil">
+        <img src="assets/images/logo.png" class="logo" alt="Logo de la bannière du site Fisheye"/>
       </a>
-        <h1>Nos photographes</h1>
+        <h1 tabindex="0">Nos photographes</h1>
     </header>
-    <main id="main">
+    <main id="main" role="main" aria-label="Contenu principal de la page d'accueil" tabindex="0">
         <div class="photographer_section"></div>
     </main>
     <script src="scripts/factories/photographer.js"></script>

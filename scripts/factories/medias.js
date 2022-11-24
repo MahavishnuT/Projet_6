@@ -24,11 +24,13 @@ function mediaFactory(data) {
 
 
 
-function createMediaInDOM(type, media) {
+function createMediaInDOM(type, media, title) {
     const lightboxContainer = document.querySelector(".lightbox-container");
 
     const newMedia = document.createElement( type );
     newMedia.setAttribute("src", media)
+    newMedia.setAttribute("alt", `Média nommé ${title}`)
+    newMedia.setAttribute("tabindex", "0")
     newMedia.setAttribute("onclick", "openLightbox()")
     newMedia.addEventListener("click", () => {
         newMedia.classList.add("active");
@@ -43,15 +45,16 @@ function createMediaInDOM(type, media) {
     return (newMedia);
 }
 
+function imageOrVideo(image, video, title) {
+    
+    return image ? createMediaInDOM("img", image, title) : createMediaInDOM("video", video, title)
+    
+}
+
 function getMediaCardDOM(title, image, video, likes, date) {
     
-    function imageOrVideo() {
-        
-        return image ? createMediaInDOM("img", image) : createMediaInDOM("video", video) 
-        
-    }
     
-    const result = imageOrVideo();
+    const result = imageOrVideo(image, video, title);
     
     const h2 = document.createElement( 'h2' );
     h2.textContent = title;
@@ -61,6 +64,10 @@ function getMediaCardDOM(title, image, video, likes, date) {
     likesNumber.innerText = parseInt(likes, 10);
     
     const heartShapeButton = document.createElement("button");
+    heartShapeButton.setAttribute("title", `Mettre un like au post ${title}?`);
+    heartShapeButton.setAttribute("tabindex", "0");
+    heartShapeButton.setAttribute("aria-pressed", "false");
+    heartShapeButton.setAttribute("aria-label", `Bouton pour liker la publication nommée ${title}`); 
     heartShapeButton.addEventListener("click", e => {
         const likeClicked = e.target;
         let likesNumberDOM = likeClicked.previousElementSibling;
@@ -89,6 +96,8 @@ function getLikesForEncartDOM() {
 
     const sumLikesDOM = document.createElement("span");
     sumLikesDOM.innerText = allLikesArray.reduce((a, b) => a + b, 0);
+    sumLikesDOM.setAttribute("tabindex", "0");
+    sumLikesDOM.setAttribute("aria-label", `Le photographe accumule ${sumLikesDOM.innerText} likes`);
     sumLikesDOM.classList.add("sum-likes");
 
     return (sumLikesDOM);
