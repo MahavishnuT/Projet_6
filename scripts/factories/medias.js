@@ -32,6 +32,7 @@ function createMediaInDOM(type, media, title) {
     newMedia.setAttribute("alt", `Média nommé ${title}`)
     newMedia.setAttribute("tabindex", "0")
     newMedia.setAttribute("onclick", "openLightbox()")
+    console.log("media", media)
     newMedia.addEventListener("click", () => {
         if (newMedia.tagName == "VIDEO") {
             newMedia.setAttribute("autoplay", "");
@@ -41,9 +42,10 @@ function createMediaInDOM(type, media, title) {
         const newMediaTitle = newMedia.nextElementSibling;
         newMedia.classList.add("active");
         newMediaTitle.classList.add("active-title");
-        const currentMedia = document.querySelector(".active");
-        const currentTitle = document.querySelector(".active-title")
-        lightboxContainer.append(currentMedia.cloneNode(true), currentTitle.cloneNode(true));
+        const currentMedia = document.querySelector(".medias-container .active");
+        const currentTitle = document.querySelector(".medias-container .active-title")
+        lightboxContainer.appendChild(currentMedia.cloneNode(true));
+        lightboxContainer.appendChild(currentTitle.cloneNode(true));
 
     })
     newMedia.classList.add("media")

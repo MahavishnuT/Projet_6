@@ -32,10 +32,13 @@ function slideSuivante() {
 
     mediasDOMArray[indexOfMedia].classList.add("active");
     titlesDOMArray[indexOfMedia].classList.add("active-title");
-    lightboxContainer.append(mediasDOMArray[indexOfMedia].cloneNode(true), titlesDOMArray[indexOfMedia].cloneNode(true));
-    if (mediasDOMArray[indexOfMedia].cloneNode().tagName == "VIDEO") {
-        mediasDOMArray[indexOfMedia].setAttribute("autoplay", "");
-        mediasDOMArray[indexOfMedia].setAttribute("controls", "");
+    const mediasDOMArrayClone = mediasDOMArray[indexOfMedia].cloneNode(true);
+    const titlesDOMArrayClone = titlesDOMArray[indexOfMedia].cloneNode(true);
+    lightboxContainer.append(mediasDOMArrayClone, titlesDOMArrayClone);
+    if (mediasDOMArrayClone.tagName == "VIDEO") {
+        mediasDOMArrayClone.setAttribute("controls", "");
+        mediasDOMArrayClone.play();
+        mediasDOMArrayClone.currentTime = 0;
     }
 }
 suivant.addEventListener("click", (e) => {
@@ -46,7 +49,7 @@ function slidePrecedente() {
     
     const mediasDOM = document.querySelectorAll(".medias-container .media");
     const mediasDOMArray = Array.prototype.slice.call(mediasDOM);
-    const currentMedia = document.querySelector(".active");
+    const currentMedia = document.querySelector(".medias-container .active");
     const titlesDOM = document.querySelectorAll(".medias-container article h2");
     const titlesDOMArray = Array.prototype.slice.call(titlesDOM);
     const nbSlides = mediasDOM.length;
@@ -66,10 +69,13 @@ function slidePrecedente() {
 
     mediasDOMArray[indexOfMedia].classList.add("active");
     titlesDOMArray[indexOfMedia].classList.add("active-title");
-    lightboxContainer.append(mediasDOMArray[indexOfMedia].cloneNode(true), titlesDOMArray[indexOfMedia].cloneNode(true))
-    if (mediasDOMArray[indexOfMedia].tagName == "VIDEO") {
-        mediasDOMArray[indexOfMedia].setAttribute("autoplay", "");
-        mediasDOMArray[indexOfMedia].setAttribute("controls", "");
+    const mediasDOMArrayClone = mediasDOMArray[indexOfMedia].cloneNode(true);
+    const titlesDOMArrayClone = titlesDOMArray[indexOfMedia].cloneNode(true);
+    lightboxContainer.append(mediasDOMArrayClone, titlesDOMArrayClone);
+    if (mediasDOMArrayClone.tagName == "VIDEO") {
+        mediasDOMArrayClone.setAttribute("controls", "");
+        mediasDOMArrayClone.play();
+        mediasDOMArrayClone.currentTime = 0;
     }
 }
 precedent.addEventListener("click", (e) => {
@@ -107,6 +113,9 @@ function closeLightbox() {
     const mediaInLightBox = document.querySelector(".lightbox-container .media");
     const titleInLightBox = document.querySelector(".lightbox-container .media-title");
     const videos = document.querySelectorAll("video");
+    document.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
 
     videos.forEach(video => {
         video.removeAttribute("autoplay");
@@ -114,6 +123,7 @@ function closeLightbox() {
         video.pause();
         video.currentTime = 0;
     })
+
 
     backgroundLightbox.style.display = "none";
     lightboxContainer.removeChild(titleInLightBox);
