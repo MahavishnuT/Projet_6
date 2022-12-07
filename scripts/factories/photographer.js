@@ -12,7 +12,6 @@ function photographerFactory(data) {
     return { name, picture, userCardDOM, photographerPresentation, id, priceForEncart }
 }
 
-// Séparation des fonctions, éviter de mettre une fonction dans une fonction
 
 function getUserCardDOM(name, picture, city, country, tagline, price, id) {
     const article = document.createElement( 'article' );
