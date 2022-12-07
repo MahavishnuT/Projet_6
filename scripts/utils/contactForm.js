@@ -33,7 +33,7 @@ function inputValidation(input) {
   
     if(input.getAttribute("name") === "email") {
         if(regexEmail.test(input.value)) {
-        console.log("email input.value :", input.value)
+
         }
         else {
         isErrorInInput = true;
@@ -42,7 +42,7 @@ function inputValidation(input) {
 
     else if(input.getAttribute("type") === "text") {
         if(input.value.length >= 2 && regexFirstLastName.test(input.value)) {
-            console.log("name, surname, text, input.value :", input.value)
+
         }
         else {
             isErrorInInput = true;
@@ -85,6 +85,9 @@ function handleForm(e) {
       errorMsg.style.display = "block";
     }
     else {
+        everyFormInputs.forEach(input => {
+          console.log(input.value)
+        });
         form.reset();
         formElement.forEach(form => {
             form.style.display = "none";

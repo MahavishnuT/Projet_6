@@ -83,3 +83,4 @@ function getPriceForEncartDOM(price) {
     
     return(pricePerDay);
 }
+

@@ -230,7 +230,7 @@ form input {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(82, 82, 82, 50%);
+    background-color: rgba(82, 82, 82, 90%);
 }
 
 .lightbox-container {
@@ -288,6 +288,11 @@ form input {
 
 .btn-nav.right {
     right: -50px;
+}
+
+.media-title {
+    color: #D3573C;
+    font-size: 24px;
 }
 
 .encart-container {

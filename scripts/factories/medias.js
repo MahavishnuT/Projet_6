@@ -33,14 +33,19 @@ function createMediaInDOM(type, media, title) {
     newMedia.setAttribute("tabindex", "0")
     newMedia.setAttribute("onclick", "openLightbox()")
     newMedia.addEventListener("click", () => {
+        if (newMedia.tagName == "VIDEO") {
+            newMedia.setAttribute("autoplay", "");
+            newMedia.setAttribute("controls", "");
+        }
+
+        const newMediaTitle = newMedia.nextElementSibling;
         newMedia.classList.add("active");
+        newMediaTitle.classList.add("active-title");
         const currentMedia = document.querySelector(".active");
-        lightboxContainer.appendChild(currentMedia.cloneNode(true));
+        const currentTitle = document.querySelector(".active-title")
+        lightboxContainer.append(currentMedia.cloneNode(true), currentTitle.cloneNode(true));
+
     })
-    if (type === "video") {
-        newMedia.setAttribute("autoplay", "");
-        newMedia.setAttribute("controls", "");
-    }
     newMedia.classList.add("media")
     return (newMedia);
 }
@@ -58,6 +63,7 @@ function getMediaCardDOM(title, image, video, likes, date) {
     
     const h2 = document.createElement( 'h2' );
     h2.textContent = title;
+    h2.classList.add("media-title");
     
     const likesNumber = document.createElement("span");
     likesNumber.classList.add("likes");
