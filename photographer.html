@@ -38,10 +38,10 @@
 
     </main>
 
-      <div id="contact_modal">
+      <div id="contact_modal" role="dialog" tabindex="0">
         <div class="modal">
           <header class="photographer-presentation" tabindex="0">
-            <h2 tabindex="0">Contactez-moi</h2>
+            <h2 tabindex="0" aria-label="Contactez-moi">Contactez-moi</h2>
             <span class="error-msg">Les informations ne sont pas correctes</span>
             <img src="assets/icons/close.svg" onclick="closeModal()" tabindex="0" aria-label="Bouton pour fermer la boîte de dialogue"/>
           </header>
@@ -69,13 +69,13 @@
 
     <div class="background-lightbox" aria-hidden="true">
 
-      <div class="lightbox-container" aria-label="Vue rapprochée de l'image">
+      <div class="lightbox-container" aria-label="Vue rapprochée de l'image" tabindex="0">
   
-        <div class="close-btn" onclick="closeLightbox()" aria-label="Bouton pour fermer le carrousel"></div>
+        <div class="close-btn" onclick="closeLightbox()" aria-label="Bouton pour fermer le carrousel" tabindex="0"></div>
   
         <div class="navigation-buttons">
-          <div class="btn-nav left" aria-label="Bouton pour passer à l'image précédente"></div>
-          <div class="btn-nav right" aria-label="Bouton pour passer à l'image suivante"></div>
+          <div class="btn-nav left" aria-label="Bouton pour passer à l'image précédente" tabindex="0"></div>
+          <div class="btn-nav right" aria-label="Bouton pour passer à l'image suivante" tabindex="0"></div>
         </div>
   
       </div>
